@@ -1,3 +1,4 @@
+@file:JvmName("KImageCheck")
 package it.lamba.utils
 
 import java.io.EOFException
