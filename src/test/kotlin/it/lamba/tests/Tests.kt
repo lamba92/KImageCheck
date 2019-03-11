@@ -1,7 +1,7 @@
 package it.lamba.tests
 
+import it.lamba.utils.getImageData
 import it.lamba.utils.getResource
-import it.lamba.utils.imageData
 import org.junit.Test
 import java.io.File
 import kotlin.test.assertFalse
@@ -12,7 +12,7 @@ class Tests {
     @Test
     fun testBrokenImage(){
         val file = getResource("truncated.jpg")
-        val data = file.imageData
+        val data = file.getImageData()
         assertTrue { data.isImage }
         assertTrue { data.isTruncated }
     }
@@ -20,7 +20,7 @@ class Tests {
     @Test
     fun testGoodImage(){
         val file = getResource("good.png")
-        val data = file.imageData
+        val data = file.getImageData()
         assertTrue { data.isImage }
         assertFalse { data.isTruncated }
     }
@@ -28,11 +28,11 @@ class Tests {
     @Test
     fun testNotImage(){
         val file = getResource("nope.txt")
-        val data = file.imageData
+        val data = file.getImageData()
         assertFalse { data.isImage }
 
         val dir = File(System.getProperty("user.dir"))
-        val data2 = dir.imageData
+        val data2 = dir.getImageData()
         assertFalse { data2.isImage }
     }
 }
