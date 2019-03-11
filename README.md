@@ -1,4 +1,4 @@
-# KResourceLoader [![Build Status](https://travis-ci.org/lamba92/KImageCheck.svg?branch=master)](https://travis-ci.org/lamba92/KImageCheck) [![](https://jitpack.io/v/lamba92/kimagecheck.svg)](https://jitpack.io/#lamba92/kimagecheck)
+# KImageCheck [![Build Status](https://travis-ci.org/lamba92/KImageCheck.svg?branch=master)](https://travis-ci.org/lamba92/KImageCheck) [![](https://jitpack.io/v/lamba92/kimagecheck.svg)](https://jitpack.io/#lamba92/kimagecheck)
 
 Allows to check if a file is an image, if so check if it's truncated.
 
