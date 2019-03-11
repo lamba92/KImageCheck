@@ -1,4 +1,4 @@
-# KResourceLoader [![Build Status](https://travis-ci.org/lamba92/KImageCheck.svg?branch=master)](https://travis-ci.org/lamba92/KImageCheck) [![](https://jitpack.io/v/lamba92/KImageCheck.svg)](https://jitpack.io/#lamba92/KImageCheck)
+# KResourceLoader [![Build Status](https://travis-ci.org/lamba92/KImageCheck.svg?branch=master)](https://travis-ci.org/lamba92/KImageCheck) [![](https://jitpack.io/v/lamba92/kimagecheck.svg)](https://jitpack.io/#lamba92/kimagecheck)
 
 Allows to check if a file is an image, if so check if it's truncated.
 
@@ -27,7 +27,7 @@ Path myPath = Paths.get(..)
 ImageData imageData = analyzeImage(myPath)
 ```
 
-## Installing [![](https://jitpack.io/v/lamba92/KImageCheck.svg)](https://jitpack.io/#lamba92/KImageCheck)
+## Installing [![](https://jitpack.io/v/lamba92/kimagecheck.svg)](https://jitpack.io/#lamba92/kimagecheck)
 
 Add the [JitPack.io](http://jitpack.io) repository to the project `build.grade`:
 ```
