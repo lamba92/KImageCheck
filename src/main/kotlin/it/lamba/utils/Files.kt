@@ -49,8 +49,6 @@ fun analyzeImage(file: File): ImageData {
 
 data class ImageData(val isImage: Boolean, val isTruncated: Boolean = false)
 
-val File.imageData: ImageData
-    get() = analyzeImage(this)
+fun File.getImageData() = analyzeImage(this)
 
-val Path.imageData: ImageData
-    get() = analyzeImage(this)
+fun Path.getImageData() = analyzeImage(this)

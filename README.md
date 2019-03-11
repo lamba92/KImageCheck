@@ -12,10 +12,10 @@ If using Kotlin:
 
 ```kotlin
 val myFile = File(..)
-val imageData = myFile.imageData
+val imageData = myFile.getImageData()
 
 val myPath = Paths.get(...)
-val imageData = myPath.imageData
+val imageData = myPath.getImageData()
 ```
 
 If using Java:
