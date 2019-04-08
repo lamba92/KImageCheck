@@ -30,7 +30,7 @@ ImageData imageData = analyzeImage(myPath)
 ## Installing [![](https://jitpack.io/v/lamba92/kimagecheck.svg)](https://jitpack.io/#lamba92/kimagecheck)
 
 Add the [JitPack.io](http://jitpack.io) repository to the project `build.grade`:
-```
+```groovy
 repositories {
     maven { url 'https://jitpack.io' }
 }
@@ -38,14 +38,14 @@ repositories {
 
 Then import the latest version in the `build.gradle` of the modules you need:
 
-```
+```groovy
 dependencies {
     implementation 'com.github.lamba92:kimagecheck:{latest_version}'
 }
 ```
 
 If using Gradle Kotlin DSL:
-```
+```kotlin
 repositories {
     maven(url = "https://jitpack.io")
 }
@@ -55,7 +55,7 @@ dependencies {
 }
 ```
 For Maven:
-```
+```xml
 <repositories>
    <repository>
       <id>jitpack.io</id>
