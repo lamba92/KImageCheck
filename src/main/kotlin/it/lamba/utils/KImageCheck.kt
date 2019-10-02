@@ -24,7 +24,7 @@ fun analyzeImage(file: File): ImageData {
     val isTruncated = try {
         file.inputStream().use { digestInputStream ->
             val imageInputStream = ImageIO.createImageInputStream(digestInputStream)
-            imageInputStream.let { ImageIO.getImageReaders(it) }
+            imageInputStream.use { ImageIO.getImageReaders(it) }
                 .apply { if (!hasNext()) return ImageData(false) }
                 .let { it.next() }
                 .run {
