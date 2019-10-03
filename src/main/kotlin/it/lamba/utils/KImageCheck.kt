@@ -23,20 +23,21 @@ fun analyzeImage(path: Path) = analyzeImage(path.toFile())
 fun analyzeImage(file: File): ImageData {
     val isTruncated = try {
         file.inputStream().use { digestInputStream ->
-            val imageInputStream = ImageIO.createImageInputStream(digestInputStream)
-            imageInputStream.let { ImageIO.getImageReaders(it) }
-                .apply { if (!hasNext()) return ImageData(false) }
-                .let { it.next() }
-                .run {
-                    input = imageInputStream
-                    read(0)?.flush() ?: return ImageData(false)
-                    if (formatName == "JPEG") {
-                        imageInputStream.seek(imageInputStream.streamPosition - 2)
-                        val lastTwoBytes = ByteArray(2)
-                        imageInputStream.read(lastTwoBytes)
-                        lastTwoBytes[0] != 0xff.toByte() || lastTwoBytes[1] != 0xd9.toByte()
-                    } else false
-                }
+            ImageIO.createImageInputStream(digestInputStream).use { imageInputStream ->
+                ImageIO.getImageReaders(imageInputStream)
+                    .apply { if (!hasNext()) return ImageData(false) }
+                    .next()
+                    .run {
+                        input = imageInputStream
+                        read(0)?.flush() ?: return ImageData(false)
+                        if (formatName == "JPEG") {
+                            imageInputStream.seek(imageInputStream.streamPosition - 2)
+                            val lastTwoBytes = ByteArray(2)
+                            imageInputStream.read(lastTwoBytes)
+                            lastTwoBytes[0] != 0xff.toByte() || lastTwoBytes[1] != 0xd9.toByte()
+                        } else false
+                    }
+            }
         }
     } catch (e: IndexOutOfBoundsException) {
         true

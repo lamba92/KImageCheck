@@ -1,8 +1,8 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.3.21"
-    maven
+    kotlin("jvm") version "1.3.50"
+    id("maven-publish")
 }
 
 group = "it.lamba"
@@ -26,8 +26,15 @@ tasks.withType<KotlinCompile> {
 val sourcesJar by tasks.creating(Jar::class) {
     group = JavaBasePlugin.DOCUMENTATION_GROUP
     description = "Assembles sources JAR"
-    classifier = "sources"
+    archiveClassifier.set("sources")
     from(sourceSets.getAt("main").allSource)
 }
 
-artifacts.add("archives", sourcesJar)
+publishing {
+    publications {
+        create<MavenPublication>(name) {
+            from(components["java"])
+            artifact(sourcesJar)
+        }
+    }
+}
