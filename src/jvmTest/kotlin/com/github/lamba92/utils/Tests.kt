@@ -1,6 +1,5 @@
-package it.lamba.tests
+package com.github.lamba92.utils
 
-import it.lamba.utils.getImageData
 import it.lamba.utils.getResource
 import org.junit.Test
 import java.io.File

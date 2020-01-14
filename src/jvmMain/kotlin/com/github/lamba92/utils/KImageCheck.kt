@@ -1,5 +1,5 @@
 @file:JvmName("KImageCheck")
-package it.lamba.utils
+package com.github.lamba92.utils
 
 import java.io.EOFException
 import java.io.File
@@ -9,18 +9,12 @@ import javax.imageio.IIOException
 import javax.imageio.ImageIO
 
 /**
- * Analyzes [path] to check if it is an image and if so if it truncated or not.
- * @param path The [File] to be analyzed.
+ * Analyzes the file at this [path] to check if it is an image and if so if it truncated or not.
+ * @param path The path to the file to be analyzed.
  * @return An [ImageData] instance.
  */
-fun analyzeImage(path: Path) = analyzeImage(path.toFile())
-
-/**
- * Analyzes [file] to check if it is an image and if so if it truncated or not.
- * @param file The [File] to be analyzed.
- * @return An [ImageData] instance.
- */
-fun analyzeImage(file: File): ImageData {
+actual fun analyzeImage(path: String): ImageData {
+    val file = File(path)
     val isTruncated = try {
         file.inputStream().use { digestInputStream ->
             ImageIO.createImageInputStream(digestInputStream).use { imageInputStream ->
@@ -49,8 +43,15 @@ fun analyzeImage(file: File): ImageData {
     return ImageData(true, isTruncated)
 }
 
-data class ImageData(val isImage: Boolean, val isTruncated: Boolean = false)
+/**
+ * Analyzes [path] to check if it is an image and if so if it truncated or not.
+ * @param path The [File] to be analyzed.
+ * @return An [ImageData] instance.
+ */
+fun analyzeImage(path: Path) = analyzeImage(path.toString())
 
-fun File.getImageData() = analyzeImage(this)
+fun File.getImageData() = analyzeImage(this.absolutePath)
 
-fun Path.getImageData() = analyzeImage(this)
+fun Path.getImageData() = analyzeImage(this.toString())
+
+actual typealias File = File
